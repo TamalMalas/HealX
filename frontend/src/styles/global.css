@@ -1,0 +1,14 @@
+/* Minimal reset — real visual design arrives with Piece 2 (Landing Page). */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.scaffold-check {
+  padding: 3rem;
+}
