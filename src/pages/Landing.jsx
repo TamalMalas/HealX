@@ -1,27 +1,53 @@
-import { useEffect, useState } from 'react';
+import SiyaBar from '../components/SiyaBar.jsx';
 
-// Piece 1's only goal: prove the frontend and backend are actually connected.
-// Piece 2 replaces this with the real landing page from the spec —
-// the "Continue as Patient" / "Continue as Healthcare Partner" pathways
-// and the Siya command bar.
+// Piece 3 will turn these two buttons into real navigation
+// (to patient auth and partner auth). For now they're placeholders
+// that prove the layout and design work.
+function handlePatientClick() {
+  console.log('Continue as patient — wired up in Piece 3');
+}
+
+function handlePartnerClick() {
+  console.log('Continue as healthcare partner — wired up in Piece 3');
+}
+
 export default function Landing() {
-  const [backendStatus, setBackendStatus] = useState('checking...');
-
-  // useEffect with an empty [] dependency array means:
-  // "run this once, right after the page first renders."
-  useEffect(() => {
-    fetch('/api/health')
-      .then((res) => res.json())
-      .then((data) => setBackendStatus(data.message))
-      .catch(() => setBackendStatus('could not reach backend'));
-  }, []);
-
   return (
-    <main className="scaffold-check">
-      <h1>HealX</h1>
-      <p>
-        Backend says: <strong>{backendStatus}</strong>
-      </p>
-    </main>
+    <>
+      <SiyaBar />
+
+      <header className="hero">
+        <p className="hero__wordmark">HealX</p>
+        <h1 className="hero__headline">
+          Tell us what&apos;s wrong.
+          <br />
+          We&apos;ll find who can help.
+        </h1>
+      </header>
+
+      <main className="pathways">
+        <button
+          className="pathway pathway--patient"
+          onClick={handlePatientClick}
+          type="button"
+        >
+          <h2 className="pathway__title">Continue as patient</h2>
+          <p className="pathway__subtext">
+            Find care, book visits, and keep your records in one place.
+          </p>
+        </button>
+
+        <button
+          className="pathway pathway--partner"
+          onClick={handlePartnerClick}
+          type="button"
+        >
+          <h2 className="pathway__title">Continue as healthcare partner</h2>
+          <p className="pathway__subtext">
+            Manage bookings, patients, and your practice.
+          </p>
+        </button>
+      </main>
+    </>
   );
 }
